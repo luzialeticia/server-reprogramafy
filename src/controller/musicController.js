@@ -13,7 +13,7 @@ const newMusicList = musics.map(music => {
     return newMusic
 })
 
-const onlyArtist = musics.map(music => {
+const newArtistList = musics.map(music => {
     const newArtist = {
         id: music.artists.id,
         name: music.artists.name
@@ -36,14 +36,23 @@ const getMusicById = (request, response) => {
     return response.status(200).send(searchById)
 }
 
+//Tentar de novo, esse não tá funcionando:
 const getArtists = (request, response) => {
-    console.log(request.url)
-    response.status(200).send(onlyArtist)
+    let singleList = []
+
+    newArtistList.forEach(artista => {
+        const finder = newMusicList.find(item => item.id == artista.id)
+        if(finder) {
+            singleList.push(artista)
+        }
+    })
+
+    response.status(200).send(singleList)
 }
 
 const getArtistByName = (request,response) => {
     const artistName = request.params.artistName
-    const searchArtist = onlyArtist.filter(item => item.name.toLowerCase().includes(artistName))
+    const searchArtist = newArtistList.filter(item => item.name.toLowerCase().includes(artistName))
 
     if(searchArtist == false) {
         return response.status(404).send('Artista não encontrade.')
