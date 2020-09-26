@@ -4,6 +4,7 @@ const controller = require("../controller/musicController")
 
 router.get("/musics", controller.getMusics)
 router.get("/musics/:id", controller.getMusicById)
-router.get("/musics/buscar/:artist", controller.getArtist)
+router.get("/artists", controller.getArtists)
+router.get("/artists/:artistName", controller.getArtistByName)
 
 module.exports = router
