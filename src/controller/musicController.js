@@ -18,6 +18,17 @@ const getMusics = (request, response) => {
     response.status(200).send(newMusicList)
 }
 
+const getMusicById = (request, response) => {
+    const id = request.params.id
+    const searchById = newMusicList.find(music => music.id == id)
+
+    if(!searchById) {
+        return response.status(404).send('Música não encontrada.')
+    }
+    return response.status(200).send(searchById)
+}
+
 module.exports = {
-    getMusics
+    getMusics,
+    getMusicById
 }
