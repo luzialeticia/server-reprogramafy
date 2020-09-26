@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 
-//rotas
+//rota
 const music = require("./routes/musicRoute")
-//app.use("/music", music)
 app.use("/", music)
+
+module.exports = app
