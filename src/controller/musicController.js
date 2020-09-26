@@ -1,2 +1,2 @@
 const { request, response } = require("../app")
-const musics = require("../model/music.json")
+const musics = require("../model/musics.json")
