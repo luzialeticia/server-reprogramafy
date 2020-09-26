@@ -3,6 +3,6 @@ const app = express()
 
 //rota
 const music = require("./routes/musicRoute")
-app.use("/musics", music)
+app.use("/", music)
 
 module.exports = app
