@@ -13,6 +13,14 @@ const newMusicList = musics.map(music => {
     return newMusic
 })
 
+const onlyArtist = musics.map(music => {
+    const newArtist = {
+        id: music.artists.id,
+        name: music.artists.name
+    }
+    return newArtist
+})
+
 const getMusics = (request, response) => {
     console.log(request.url)
     response.status(200).send(newMusicList)
@@ -28,7 +36,18 @@ const getMusicById = (request, response) => {
     return response.status(200).send(searchById)
 }
 
+const getArtist = (request,response) => {
+    const artist = request.params.artist
+    const searchArtist = onlyArtist.filter(item => item.name.toLowerCase().includes(artist))
+
+    if(searchArtist == false) {
+        return response.status(404).send('Artista não encontrade.')
+    }
+    return response.status(200).send(searchArtist)
+}
+
 module.exports = {
     getMusics,
-    getMusicById
+    getMusicById,
+    getArtist
 }
