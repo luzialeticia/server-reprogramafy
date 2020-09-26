@@ -36,9 +36,14 @@ const getMusicById = (request, response) => {
     return response.status(200).send(searchById)
 }
 
-const getArtist = (request,response) => {
-    const artist = request.params.artist
-    const searchArtist = onlyArtist.filter(item => item.name.toLowerCase().includes(artist))
+const getArtists = (request, response) => {
+    console.log(request.url)
+    response.status(200).send(onlyArtist)
+}
+
+const getArtistByName = (request,response) => {
+    const artistName = request.params.artistName
+    const searchArtist = onlyArtist.filter(item => item.name.toLowerCase().includes(artistName))
 
     if(searchArtist == false) {
         return response.status(404).send('Artista não encontrade.')
@@ -49,5 +54,6 @@ const getArtist = (request,response) => {
 module.exports = {
     getMusics,
     getMusicById,
-    getArtist
+    getArtists,
+    getArtistByName
 }
